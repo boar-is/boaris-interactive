@@ -1,0 +1,61 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "master"
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
+    }
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        // @see https://github.com/biomejs/biome/issues/2416
+        "useLiteralKeys": "off",
+        // Learn TypeScript
+        "noBannedTypes": "off"
+      },
+      "style": {
+        "noNegationElse": "error",
+        "noNonNullAssertion": "off",
+        "noShoutyConstants": "error",
+        "useBlockStatements": "error",
+        "useCollapsedElseIf": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": {
+            "syntax": "generic"
+          }
+        },
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": [
+              "kebab-case",
+              "camelCase"
+            ]
+          }
+        },
+        "useForOf": "error",
+        "useFragmentSyntax": "error",
+        "noParameterAssign": "off",
+        "useShorthandAssign": "error",
+        "useSingleCaseStatement": "error"
+      },
+      "suspicious": {
+        "noShadowRestrictedNames": "off"
+      },
+      "nursery": {
+        "useConsistentCurlyBraces": "error"
+      }
+    }
+  }
+}

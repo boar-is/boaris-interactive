@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  *,
+  *::before,
+  *::after {
+    @apply border-gray-6;
+    font-variation-settings: "opsz" 32;
+    font-feature-settings: "liga", "calt", "zero", "ss01", "cv06", "cv11";
+  }
+
+  :focus-visible {
+    @apply outline-none;
+  }
+
+  .focus-visible :focus-visible {
+    @apply outline outline-accent-7/75 outline-offset-2;
+  }
+}
+
+.container {
+  @apply w-full mx-auto ~px-2/8 lg:max-w-7xl;
+}
+
+.tiptap {
+  @apply rounded-xl;
+}
+
+.tiptap .is-editor-empty:first-child::before {
+  @apply text-gray-10 content-[attr(data-placeholder)] float-left h-0 pointer-events-none;
+}
+
+.cm-editor {
+  @apply h-full;
+}
+
+.cm-scroller {
+  @apply font-mono !~text-xs/sm !overflow-visible !w-full;
+}
+
+.cm-line {
+  @apply !~pl-2/4;
+}
+
+.cm-scroller:has(.cm-selectionBackground) .cm-activeLine {
+  @apply !bg-transparent !border-none;
+}
+
+.cm-activeLine,
+.cm-selectionBackground,
+.cm-selectionMatch {
+  @apply !bg-accent-11/20;
+}
+
+@layer components {
+  .typography {
+    @apply max-w-[40ch] text-balance ~text-base/2xl text-gray-11 tracking-tight drop-shadow;
+  }
+
+  .typography .tiptap > *:first-child {
+    margin-top: 0;
+  }
+
+  .typography .tiptap > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .typography :where([data-slot~="heading"]) {
+    @apply ~mt-10/16 ~mb-5/8 ~text-3xl/5xl font-extrabold;
+  }
+
+  .typography :where([data-slot~="subheading"]) {
+    @apply ~mt-8/12 ~mb-4/6 ~text-2xl/4xl font-bold;
+  }
+
+  .typography :where(p) {
+    @apply ~my-6/10 leading-normal first:mt-0 font-semibold;
+  }
+
+  .typography :where(code) {
+    @apply font-mono text-[80%] [font-variant-ligatures:normal] border border-accent-7 py-[0.25%] px-[1%] bg-accent-6/35 text-accent-12 ~rounded-md/lg tracking-normal;
+  }
+
+  .typography :where(em) {
+    @apply underline decoration-accent-11 decoration-wavy not-italic;
+  }
+
+  .typography :where(strong) {
+    @apply font-extrabold;
+  }
+
+  .typography :where(a) {
+    @apply text-accent-12 cursor-pointer border-b border-transparent hover:text-accent-11 hover:border-current font-bold transition-colors;
+  }
+
+  .typography :where(ol, ul) {
+    @apply ~my-2/4 ~pl-4/7;
+
+    p {
+      @apply ~my-2/4;
+    }
+  }
+
+  .typography :where(ol) {
+    @apply list-decimal;
+  }
+
+  .typography :where(ul) {
+    @apply list-disc;
+  }
+
+  .typography :where(ul ul) {
+    @apply list-[square];
+  }
+
+  .typography :where(li) {
+    @apply marker:text-gray-10 marker:font-semibold marker:transition-colors;
+  }
+
+  .typography :where(li):has(.h) {
+    @apply marker:text-accent-10;
+  }
+
+  .typography
+    :where([data-slot~="heading"] + *, [data-slot~="subheading"] + *) {
+    @apply mt-0;
+  }
+
+  .typography :where(.h) {
+    @apply text-gray-12;
+  }
+
+  .typography :where(code .h, a .h) {
+    @apply text-accent-11;
+  }
+}
